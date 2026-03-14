@@ -100,13 +100,10 @@ Every push to `main` automatically builds and pushes the image to GHCR via GitHu
 **First-time setup on the server:**
 
 ```bash
-# For private repos — log in with a GitHub personal access token
-echo YOUR_GITHUB_TOKEN | docker login ghcr.io -u YOUR_USERNAME --password-stdin
-
 # Copy and fill in your environment file
 cp .env.example .env
 
-# Pull and start
+# Pull and start (no login needed — public image)
 docker compose pull
 docker compose up -d
 ```
@@ -202,7 +199,7 @@ GitHub Actions workflow at [.github/workflows/docker.yml](.github/workflows/dock
    - `ghcr.io/msamoeed/qatarairways-tracker:latest`
    - `ghcr.io/msamoeed/qatarairways-tracker:sha-abc1234`
 
-No secrets needed — uses the built-in `GITHUB_TOKEN`.
+No secrets needed — uses the built-in `GITHUB_TOKEN`. The image is public and can be pulled without authentication.
 
 ---
 
