@@ -4,6 +4,14 @@ FROM mcr.microsoft.com/playwright:v1.58.2-noble
 
 WORKDIR /app
 
+# Build tools required by better-sqlite3 (native module)
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
 
 # Install ALL deps (devDependencies needed for nest CLI to build)
