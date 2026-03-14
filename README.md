@@ -60,27 +60,104 @@ On startup, a headless browser automatically captures a valid Qatar Airways sess
 
 ## Docker
 
-### Server setup (first time)
+### Server setup (step by step)
 
-You only need two files on the server — no need to clone the full repo:
+You only need two files on the server — no need to clone the full repo.
+
+#### Step 1 — Create a directory
 
 ```bash
-# 1. Create a directory
 mkdir qatarairways-tracker && cd qatarairways-tracker
+```
 
-# 2. Download the compose file
+#### Step 2 — Download the compose and env files
+
+```bash
 curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/docker-compose.yml
-
-# 3. Download the example env file
 curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/.env.example
+```
 
-# 4. Create your env file and fill in your values
+#### Step 3 — Create your env file
+
+```bash
 cp .env.example .env
-nano .env
+nano .env   # or vim .env / any editor you prefer
+```
 
-# 5. Pull the image and start
+Fill in the following values:
+
+```env
+EMAIL_HOST=smtp.yourserver.com
+EMAIL_PORT=587
+EMAIL_USER=you@yourdomain.com
+EMAIL_PASS=your_password
+EMAIL_FROM=noreply@yourdomain.com
+EMAIL_TO=you@yourdomain.com,someone@else.com
+PORT=3000
+```
+
+#### Step 4 — Pull the image
+
+```bash
 docker compose pull
+```
+
+This pulls `ghcr.io/msamoeed/qatarairways-tracker:latest` — no login required, the image is public.
+
+#### Step 5 — Start the container
+
+```bash
 docker compose up -d
+```
+
+#### Step 6 — Verify it's running
+
+```bash
+docker compose ps
+docker compose logs -f
+```
+
+You should see:
+
+```text
+[SessionService] No valid session on startup — fetching one now…
+[CookieRefresherService] Launching headless browser to capture fresh QR session…
+[CookieRefresherService] Loading homepage…
+[CookieRefresherService] Loading search results page…
+[NestApplication] Nest application successfully started
+Qatar Airways Tracker running on http://localhost:3000
+```
+
+#### Step 7 — Test your email
+
+```bash
+curl -X POST http://your-server:7432/notifier/test
+```
+
+Check your inbox for the test email.
+
+#### Step 8 — Add flights to track
+
+```bash
+# Track a single date
+curl -X POST http://your-server:7432/flights \
+  -H "Content-Type: application/json" \
+  -d '{"origin":"DOH","destination":"ISB","departureDate":"2026-03-29","cabinClass":"ECONOMY"}'
+
+# Or track a full date range
+curl -X POST http://your-server:7432/flights/range \
+  -H "Content-Type: application/json" \
+  -d '{"origin":"DOH","destination":"ISB","from":"2026-03-15","to":"2026-04-04","cabinClass":"ECONOMY"}'
+```
+
+The tracker will now poll every 10 minutes and email you the moment anything changes.
+
+---
+
+#### Updating to the latest version
+
+```bash
+docker compose pull && docker compose up -d
 ```
 
 ---
