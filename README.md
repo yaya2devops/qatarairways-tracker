@@ -18,6 +18,8 @@ Automatically monitors Qatar Airways flight availability and sends email alerts 
 | Price changes | `💰 QR DOH→ISB 2026-03-29: Price Changed` |
 | Seat count changes | `💺 QR DOH→ISB 2026-03-29: Seats Changed` |
 
+---
+
 ## Setup
 
 ### 1. Install dependencies
@@ -36,23 +38,94 @@ cp .env.example .env
 Edit `.env`:
 
 ```env
-EMAIL_HOST=your.smtp.server.com
+EMAIL_HOST=smtp.yourserver.com
 EMAIL_PORT=587
 EMAIL_USER=you@yourdomain.com
 EMAIL_PASS=your_password
 EMAIL_FROM=noreply@yourdomain.com
-EMAIL_TO=you@yourdomain.com
+EMAIL_TO=you@yourdomain.com,someone@else.com
 PORT=3000
 ```
 
-### 3. Run
+### 3. Run locally
 
 ```bash
-npm run start:dev      # development (watch mode)
-npm run build && npm run start:prod   # production
+npm run start:dev                        # development (watch mode)
+npm run build && npm run start:prod      # production
 ```
 
 On startup, a headless browser automatically captures a valid Qatar Airways session. No manual cookie management needed.
+
+---
+
+## Docker
+
+### Server setup (first time)
+
+You only need two files on the server — no need to clone the full repo:
+
+```bash
+# 1. Create a directory
+mkdir qatarairways-tracker && cd qatarairways-tracker
+
+# 2. Download the compose file
+curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/docker-compose.yml
+
+# 3. Download the example env file
+curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/.env.example
+
+# 4. Create your env file and fill in your values
+cp .env.example .env
+nano .env
+
+# 5. Pull the image and start
+docker compose pull
+docker compose up -d
+```
+
+---
+
+### Option A — Build locally
+
+```bash
+cp .env.example .env   # fill in your values
+
+docker compose up -d
+```
+
+### Option B — Pull from GitHub Container Registry (recommended for servers)
+
+Every push to `main` automatically builds and pushes the image to GHCR via GitHub Actions.
+
+**First-time setup on the server:**
+
+```bash
+# For private repos — log in with a GitHub personal access token
+echo YOUR_GITHUB_TOKEN | docker login ghcr.io -u YOUR_USERNAME --password-stdin
+
+# Copy and fill in your environment file
+cp .env.example .env
+
+# Pull and start
+docker compose pull
+docker compose up -d
+```
+
+**Update to the latest image:**
+
+```bash
+docker compose pull && docker compose up -d
+```
+
+**View logs:**
+
+```bash
+docker compose logs -f
+```
+
+The app is exposed on port **7432** (`http://your-server:7432`).
+
+The SQLite database is persisted in a Docker volume (`tracker-data`) and survives container restarts and image updates.
 
 ---
 
@@ -72,7 +145,7 @@ On startup, a headless browser automatically captures a valid Qatar Airways sess
 #### Track a single date
 
 ```bash
-curl -X POST http://localhost:3000/flights \
+curl -X POST http://localhost:7432/flights \
   -H "Content-Type: application/json" \
   -d '{
     "origin": "DOH",
@@ -86,7 +159,7 @@ curl -X POST http://localhost:3000/flights \
 #### Track a date range
 
 ```bash
-curl -X POST http://localhost:3000/flights/range \
+curl -X POST http://localhost:7432/flights/range \
   -H "Content-Type: application/json" \
   -d '{
     "origin": "DOH",
@@ -100,7 +173,7 @@ curl -X POST http://localhost:3000/flights/range \
 #### Pause tracking
 
 ```bash
-curl -X PATCH http://localhost:3000/flights/1/active \
+curl -X PATCH http://localhost:7432/flights/1/active \
   -H "Content-Type: application/json" \
   -d '{"isActive": false}'
 ```
@@ -120,34 +193,24 @@ curl -X PATCH http://localhost:3000/flights/1/active \
 
 ---
 
-## Docker
+## CI/CD
 
-```bash
-cp .env.example .env
-# fill in .env
+GitHub Actions workflow at [.github/workflows/docker.yml](.github/workflows/docker.yml) triggers on every push to `main`:
 
-docker compose up -d
-```
+1. Builds the Docker image
+2. Pushes to GitHub Container Registry as:
+   - `ghcr.io/msamoeed/qatarairways-tracker:latest`
+   - `ghcr.io/msamoeed/qatarairways-tracker:sha-abc1234`
 
-The SQLite database is persisted in a Docker volume (`tracker-data`) so it survives container restarts and rebuilds.
-
-To view logs:
-
-```bash
-docker compose logs -f
-```
-
-To rebuild after code changes:
-
-```bash
-docker compose up -d --build
-```
+No secrets needed — uses the built-in `GITHUB_TOKEN`.
 
 ---
 
 ## Database
 
-SQLite — stored as `tracker.db` in the project root. No separate database server needed. Tables are auto-created on first run.
+SQLite — stored as a file in the `tracker-data` Docker volume (or `tracker.db` locally). No separate database server needed. Tables are auto-created on first run.
+
+---
 
 ## Session management
 

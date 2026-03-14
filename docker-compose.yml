@@ -1,6 +1,6 @@
 services:
   tracker:
-    build: .
+    image: ghcr.io/${GITHUB_REPOSITORY:-msamoeed/qatarairways-tracker}:latest
     restart: unless-stopped
     ports:
       - "7432:3000"
