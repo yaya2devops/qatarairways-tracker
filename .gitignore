@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment — never commit secrets
+.env
+
+# Logs
+*.log
+logs/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Playwright browser binaries (downloaded on demand)
+/playwright-report/
+/test-results/
