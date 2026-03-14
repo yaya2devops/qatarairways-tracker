@@ -238,19 +238,26 @@ export class FlightsService {
     curr: FareSnapshot[],
   ): ChangeDetail[] {
     const changes: ChangeDetail[] = [];
-    for (const c of curr) {
-      const p = prev.find(
-        (s) => s.flightNumber === c.flightNumber && s.fareFamilyCode === c.fareFamilyCode,
+
+    // Only notify when a fare family sells out (seats drop to 0)
+    for (const p of prev) {
+      const c = curr.find(
+        (s) => s.flightNumber === p.flightNumber && s.fareFamilyCode === p.fareFamilyCode,
       );
-      if (!p) continue;
-      if (p.availableSeats !== c.availableSeats) {
-        const dir = c.availableSeats < p.availableSeats ? 'decreased' : 'increased';
+      if (!c && p.availableSeats > 0) {
+        // Fare family disappeared from results — treat as sold out
         changes.push({
           type: 'SEATS_CHANGED',
-          description: `${c.flightNumber} ${c.fareFamilyCode} (${c.cabinType}): seats ${dir} from ${p.availableSeats} → ${c.availableSeats}`,
+          description: `${p.flightNumber} ${p.fareFamilyCode} (${p.cabinType}): sold out`,
+        });
+      } else if (c && p.availableSeats > 0 && c.availableSeats === 0) {
+        changes.push({
+          type: 'SEATS_CHANGED',
+          description: `${c.flightNumber} ${c.fareFamilyCode} (${c.cabinType}): sold out (was ${p.availableSeats} seats)`,
         });
       }
     }
+
     return changes;
   }
 
