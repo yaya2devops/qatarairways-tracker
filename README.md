@@ -120,6 +120,31 @@ curl -X PATCH http://localhost:3000/flights/1/active \
 
 ---
 
+## Docker
+
+```bash
+cp .env.example .env
+# fill in .env
+
+docker compose up -d
+```
+
+The SQLite database is persisted in a Docker volume (`tracker-data`) so it survives container restarts and rebuilds.
+
+To view logs:
+
+```bash
+docker compose logs -f
+```
+
+To rebuild after code changes:
+
+```bash
+docker compose up -d --build
+```
+
+---
+
 ## Database
 
 SQLite — stored as `tracker.db` in the project root. No separate database server needed. Tables are auto-created on first run.

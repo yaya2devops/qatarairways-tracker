@@ -1,0 +1,15 @@
+services:
+  tracker:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "7432:3000"
+    env_file:
+      - .env
+    environment:
+      DB_PATH: /app/data/tracker.db
+    volumes:
+      - tracker-data:/app/data
+
+volumes:
+  tracker-data:

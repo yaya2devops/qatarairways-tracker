@@ -11,7 +11,7 @@ import { SessionModule } from './session/session.module';
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
-      database: 'tracker.db',
+      database: process.env.DB_PATH ?? 'tracker.db',
       autoLoadEntities: true,
       synchronize: true,
     }),
