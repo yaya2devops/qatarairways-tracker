@@ -14,7 +14,7 @@ export class TrackerSchedulerService {
    * Override by changing the cron expression below or adding a POLL_INTERVAL
    * env-based dynamic cron (upgrade to @Interval if you prefer milliseconds).
    */
-  @Cron(CronExpression.EVERY_10_MINUTES)
+  @Cron(CronExpression.EVERY_MINUTE)
   async handleCron(): Promise<void> {
     if (this.isRunning) {
       this.logger.warn('Previous check is still running — skipping this tick.');
