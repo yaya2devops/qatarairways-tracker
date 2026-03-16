@@ -191,7 +191,10 @@ export class FlightsService {
       this.logger.log(
         `Change(s) detected for ${label}: ${changes.map((c) => c.type).join(', ')}`,
       );
-      await this.sendAlert(flight, currentOffers, changes);
+      const alertableChanges = changes.filter((c) => c.type !== 'PRICE_CHANGED');
+      if (alertableChanges.length) {
+        await this.sendAlert(flight, currentOffers, alertableChanges);
+      }
     } else {
       this.logger.debug(`No changes for ${label}`);
     }
