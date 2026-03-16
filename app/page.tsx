@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Menu, X, ChevronRight, BookOpen, Code2, Zap, BarChart3, ArrowRight, Github, ExternalLink, Plane, AlertCircle, Cpu, Cloud } from 'lucide-react'
-import Link from 'next/link'
+import { Menu, X, ChevronRight, Code2, Zap, BarChart3, Github, Plane, Cpu, Cloud, Terminal, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 
 export default function DocsHome() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -10,126 +10,87 @@ export default function DocsHome() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Plane className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-sm text-foreground">Qatar Airways</span>
-                <span className="text-xs text-muted-foreground">Flight Tracker</span>
-              </div>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded bg-primary flex items-center justify-center">
+              <Plane className="w-5 h-5 text-primary-foreground" />
             </div>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#overview" className="text-sm text-muted-foreground hover:text-foreground transition">Overview</a>
-              <a href="#quick-start" className="text-sm text-muted-foreground hover:text-foreground transition">Quick Start</a>
-              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition">Features</a>
-              <a href="#architecture" className="text-sm text-muted-foreground hover:text-foreground transition">Architecture</a>
-              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
-                <Github className="w-4 h-4" />
-              </a>
-            </div>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-foreground">
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <span className="font-bold text-sm hidden sm:inline">QA Tracker</span>
           </div>
+          <div className="hidden md:flex items-center gap-6">
+            <a href="#quick-start" className="text-xs text-muted-foreground hover:text-foreground transition">Docs</a>
+            <a href="#features" className="text-xs text-muted-foreground hover:text-foreground transition">Features</a>
+            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition flex items-center gap-1">
+              <Github className="w-3.5 h-3.5" /> Source
+            </a>
+          </div>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-foreground text-sm">
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-border bg-card p-4 space-y-3">
-          <a href="#overview" className="block text-sm text-muted-foreground">Overview</a>
-          <a href="#quick-start" className="block text-sm text-muted-foreground">Quick Start</a>
-          <a href="#features" className="block text-sm text-muted-foreground">Features</a>
-          <a href="#architecture" className="block text-sm text-muted-foreground">Architecture</a>
+        <div className="md:hidden fixed top-14 left-0 right-0 border-b border-border bg-card p-3 space-y-2 z-40">
+          <a href="#quick-start" className="block text-xs text-muted-foreground hover:text-foreground p-2">Docs</a>
+          <a href="#features" className="block text-xs text-muted-foreground hover:text-foreground p-2">Features</a>
+          <a href="https://github.com/msamoeed/qatarairways-tracker" className="block text-xs text-muted-foreground hover:text-primary p-2">Source</a>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-6 px-4 py-2 rounded-full bg-accent/10 border border-accent/30">
-            <span className="text-xs font-semibold text-accent">Open Source • MIT License</span>
-          </div>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance mb-8 leading-tight">
-            Qatar Airways <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Flight Tracker</span>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-12">
+        <div className="text-center">
+          <div className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/15 border border-accent/40 text-[11px] font-semibold text-accent">MIT License • Open Source</div>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-balance">
+            Qatar Airways <span className="text-primary">Flight Tracker</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-balance mb-10">
-            Monitor Qatar Airways flights in real-time, track prices, and receive instant email alerts. Full-stack application built with TypeScript, NestJS backend, and Next.js frontend for seamless performance.
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-6">
+            Real-time flight monitoring with price tracking and instant email alerts. Built with NestJS, Next.js, and PostgreSQL.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#quick-start" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/30 transition">
-              Get Started <ArrowRight className="w-4 h-4" />
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+            <a href="#quick-start" className="inline-flex items-center justify-center gap-1 px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:shadow-lg hover:shadow-primary/20 transition">
+              Get Started <ChevronRight className="w-3.5 h-3.5" />
             </a>
-            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-card transition">
-              <Github className="w-4 h-4" /> View Repository
+            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1 px-5 py-2 rounded-lg border border-border text-sm font-medium hover:border-primary/50 transition">
+              <Github className="w-3.5 h-3.5" /> GitHub
             </a>
           </div>
-        </div>
-
-        {/* Project Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20">
-          <StatCard label="Repository" value="github.com/msamoeed" />
-          <StatCard label="Version" value="v1.0.0" />
-          <StatCard label="License" value="MIT" />
-          <StatCard label="Language" value="TypeScript" />
         </div>
       </section>
 
       {/* Overview Section */}
-      <section id="overview" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section id="overview" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>
-            <h2 className="text-4xl font-bold text-balance mb-6">What is Qatar Airways Tracker?</h2>
-            <p className="text-lg text-muted-foreground text-balance mb-6">
-              A comprehensive full-stack application designed to monitor Qatar Airways flight availability and prices in real-time. Receive instant email notifications when prices drop, flights become available, or seat counts change.
-            </p>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Checkmark />
-                <span><strong>Real-Time Monitoring</strong> - Track flights 24/7 with automatic updates</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Checkmark />
-                <span><strong>Email Alerts</strong> - Get notified instantly when conditions match</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Checkmark />
-                <span><strong>Price Tracking</strong> - Monitor historical pricing trends and patterns</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Checkmark />
-                <span><strong>Seat Management</strong> - Track available seats by cabin class</span>
-              </li>
+            <h2 className="text-2xl font-bold mb-4">Monitor Qatar Airways flights</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><span className="text-accent mt-0.5">→</span> Real-time flight availability and prices</li>
+              <li className="flex items-start gap-2"><span className="text-accent mt-0.5">→</span> Instant email alerts on price drops</li>
+              <li className="flex items-start gap-2"><span className="text-accent mt-0.5">→</span> Seat count tracking by cabin</li>
+              <li className="flex items-start gap-2"><span className="text-accent mt-0.5">→</span> Full-stack TypeScript application</li>
+              <li className="flex items-start gap-2"><span className="text-accent mt-0.5">→</span> REST & GraphQL APIs included</li>
             </ul>
           </div>
-          <div className="space-y-4">
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-sm text-muted-foreground">Example Flight</p>
-                <span className="px-2 py-1 rounded text-xs font-semibold bg-green-500/20 text-green-700 dark:text-green-400">Available</span>
+          <div className="bg-card border border-border/50 rounded-lg p-4 text-xs space-y-2">
+            <div className="flex items-center justify-between pb-2 border-b border-border/30">
+              <span className="text-muted-foreground">DOH → LHR</span>
+              <span className="inline-block px-2 py-0.5 rounded bg-green-500/20 text-green-600 dark:text-green-400 font-semibold">Available</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <p className="text-muted-foreground text-[10px]">Price</p>
+                <p className="font-bold text-primary">QR 2,450</p>
               </div>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs text-muted-foreground">Route</p>
-                  <p className="font-bold">DOH → LHR</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Price</p>
-                  <p className="font-bold">QR 2,450 <span className="text-xs text-green-600 dark:text-green-400">↓ 8%</span></p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Available Seats</p>
-                  <p className="font-bold">12 Economy Seats</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Last Updated</p>
-                  <p className="font-bold text-xs">2 minutes ago <span className="inline-block w-2 h-2 rounded-full bg-green-500 ml-2 animate-pulse"></span></p>
-                </div>
+              <div>
+                <p className="text-muted-foreground text-[10px]">Seats</p>
+                <p className="font-bold">12 eco</p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-muted-foreground text-[10px]">Updated</p>
+                <p className="font-bold">2m ago</p>
               </div>
             </div>
           </div>
@@ -137,250 +98,129 @@ export default function DocsHome() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <h2 className="text-4xl font-bold text-center mb-16">Core Features</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <FeatureCard
-            icon={<Zap className="w-6 h-6" />}
-            title="Real-Time Updates"
-            description="Live flight availability and pricing refreshed automatically every minute"
-          />
-          <FeatureCard
-            icon={<BarChart3 className="w-6 h-6" />}
-            title="Price Analytics"
-            description="Track price trends and historical data with visual charts and statistics"
-          />
-          <FeatureCard
-            icon={<Code2 className="w-6 h-6" />}
-            title="REST & GraphQL APIs"
-            description="Flexible API endpoints for seamless integration with your systems"
-          />
-          <FeatureCard
-            icon={<BookOpen className="w-6 h-6" />}
-            title="Complete Documentation"
-            description="Comprehensive guides, tutorials, and full API reference included"
-          />
+      <section id="features" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <h2 className="text-2xl font-bold mb-6">Features</h2>
+        <div className="grid md:grid-cols-4 gap-3">
+          <FeatureCard icon={<Zap className="w-4 h-4" />} title="Real-Time" description="1-min updates" />
+          <FeatureCard icon={<BarChart3 className="w-4 h-4" />} title="Analytics" description="Price trends" />
+          <FeatureCard icon={<Code2 className="w-4 h-4" />} title="APIs" description="REST & GraphQL" />
+          <FeatureCard icon={<Terminal className="w-4 h-4" />} title="Docs" description="Full reference" />
         </div>
       </section>
 
       {/* Quick Start Section */}
-      <section id="quick-start" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <h2 className="text-4xl font-bold mb-16">Quick Start Guide</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <QuickStartStep
-            number={1}
-            title="Clone Repository"
-            description="Download source code from GitHub"
-            code="git clone https://github.com/msamoeed/qatarairways-tracker"
-          />
-          <QuickStartStep
-            number={2}
-            title="Install Dependencies"
-            description="Set up both backend and frontend"
-            code="# Backend & Frontend\ncd backend && npm install\ncd ../frontend && npm install"
-          />
-          <QuickStartStep
-            number={3}
-            title="Start Services"
-            description="Run development servers"
-            code="# Terminal 1: Backend\nnpm run dev:backend\n# Terminal 2: Frontend\nnpm run dev"
-          />
+      <section id="quick-start" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <h2 className="text-2xl font-bold mb-6">Quick Start</h2>
+        <div className="space-y-3">
+          <CodeBlock label="1. Clone" code="git clone https://github.com/msamoeed/qatarairways-tracker" />
+          <CodeBlock label="2. Install" code="npm install && cd frontend && npm install" />
+          <CodeBlock label="3. Run" code="npm run dev  # Backend & frontend run simultaneously" />
         </div>
       </section>
 
       {/* Architecture Section */}
-      <section id="architecture" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <h2 className="text-4xl font-bold mb-16">Architecture Overview</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+      <section id="architecture" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <h2 className="text-2xl font-bold mb-6">Architecture</h2>
+        <div className="grid md:grid-cols-2 gap-4">
           <ArchitectureCard
-            icon={<Cpu className="w-6 h-6" />}
-            title="Backend (NestJS)"
-            items={[
-              'REST API for CRUD operations',
-              'GraphQL for complex queries',
-              'PostgreSQL database',
-              'Real-time WebSocket support',
-              'Email notification service',
-              'Automated flight tracking'
-            ]}
+            icon={<Cpu className="w-4 h-4" />}
+            title="Backend"
+            items={['NestJS REST API', 'GraphQL support', 'PostgreSQL DB', 'WebSocket realtime', 'Email service']}
           />
           <ArchitectureCard
-            icon={<Cloud className="w-6 h-6" />}
-            title="Frontend (Next.js)"
-            items={[
-              'Next.js 16 React application',
-              'Tailwind CSS styling',
-              'Real-time data visualization',
-              'Responsive dashboard UI',
-              'Production-ready components',
-              'TypeScript type safety'
-            ]}
+            icon={<Cloud className="w-4 h-4" />}
+            title="Frontend"
+            items={['Next.js 16', 'Tailwind CSS', 'Charts & dashboards', 'TypeScript', 'Responsive UI']}
           />
         </div>
       </section>
 
       {/* Documentation Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <h2 className="text-4xl font-bold mb-16">Documentation & Guides</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <DocCard
-            title="Installation Guide"
-            description="Complete setup instructions for development environment"
-            icon={<BookOpen className="w-5 h-5" />}
-          />
-          <DocCard
-            title="API Documentation"
-            description="Full REST and GraphQL API reference with code examples"
-            icon={<Code2 className="w-5 h-5" />}
-          />
-          <DocCard
-            title="Frontend Components"
-            description="Built-in UI components and usage patterns"
-            icon={<BarChart3 className="w-5 h-5" />}
-          />
-          <DocCard
-            title="Deployment Guide"
-            description="Deploy to production on Vercel or other platforms"
-            icon={<Cloud className="w-5 h-5" />}
-          />
-          <DocCard
-            title="Configuration"
-            description="Environment variables and system settings"
-            icon={<Cpu className="w-5 h-5" />}
-          />
-          <DocCard
-            title="Contributing"
-            description="Guidelines for contributing to the project"
-            icon={<Github className="w-5 h-5" />}
-          />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <h2 className="text-2xl font-bold mb-6">Docs & Resources</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          <DocCard title="Installation" icon={<Terminal className="w-3.5 h-3.5" />} />
+          <DocCard title="API Reference" icon={<Code2 className="w-3.5 h-3.5" />} />
+          <DocCard title="Deployment" icon={<Cloud className="w-3.5 h-3.5" />} />
+          <DocCard title="Contributing" icon={<Github className="w-3.5 h-3.5" />} />
+          <DocCard title="FAQ" icon={<Sparkles className="w-3.5 h-3.5" />} />
+          <DocCard title="Source Code" icon={<Github className="w-3.5 h-3.5" />} />
         </div>
       </section>
 
       {/* Repository Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
-        <div className="bg-card border border-border rounded-lg p-12">
-          <div className="flex items-start justify-between flex-col sm:flex-row gap-8">
-            <div>
-              <h3 className="text-3xl font-bold mb-4">Source Repository</h3>
-              <p className="text-muted-foreground mb-8 max-w-lg">
-                This project is open source and available on GitHub. All contributions are welcome and encouraged.
-              </p>
-              <div className="space-y-3 text-sm font-mono text-muted-foreground">
-                <p><span className="text-primary font-bold">Repository:</span> github.com/msamoeed/qatarairways-tracker</p>
-                <p><span className="text-primary font-bold">Issues:</span> github.com/msamoeed/qatarairways-tracker/issues</p>
-                <p><span className="text-primary font-bold">License:</span> MIT Open Source</p>
-              </div>
-            </div>
-            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/30 transition whitespace-nowrap">
-              <Github className="w-5 h-5" /> Visit GitHub
-            </a>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50">
+        <div className="bg-card border border-border/50 rounded-lg p-6 flex flex-col sm:flex-row items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold mb-2">Open Source on GitHub</h3>
+            <p className="text-xs text-muted-foreground max-w-sm">github.com/msamoeed/qatarairways-tracker • MIT License</p>
           </div>
+          <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:shadow-lg hover:shadow-primary/20 transition whitespace-nowrap">
+            <Github className="w-3.5 h-3.5" /> View
+          </a>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border text-center">
-        <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-          Begin monitoring Qatar Airways flights today. Complete documentation and examples included.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#quick-start" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/30 transition">
-            Installation Guide <ChevronRight className="w-4 h-4" />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-border/50 text-center">
+        <h2 className="text-2xl font-bold mb-2">Start monitoring flights today</h2>
+        <p className="text-xs text-muted-foreground mb-6">Full documentation, examples, and live API included</p>
+        <div className="flex flex-col sm:flex-row gap-2 justify-center">
+          <a href="#quick-start" className="inline-flex items-center justify-center gap-1 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:shadow-lg hover:shadow-primary/20 transition">
+            Get Started <ChevronRight className="w-3.5 h-3.5" />
           </a>
-          <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-border font-medium hover:bg-card transition">
-            <Github className="w-4 h-4" /> Star on GitHub
+          <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1 px-4 py-2 rounded-lg border border-border text-sm font-medium hover:border-primary/50 transition">
+            <Github className="w-3.5 h-3.5" /> GitHub
           </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <footer className="border-t border-border/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-6 pb-6 border-b border-border/30">
             <div>
-              <h4 className="font-bold mb-4">Documentation</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">Installation</a></li>
-                <li><a href="#" className="hover:text-foreground transition">API Reference</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Components</a></li>
+              <p className="text-xs font-bold mb-2">Resources</p>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition">Docs</a></li>
+                <li><a href="#" className="hover:text-foreground transition">API</a></li>
+                <li><a href="#" className="hover:text-foreground transition">Deploy</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">FAQ</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Troubleshooting</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Examples</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Community</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <p className="text-xs font-bold mb-2">Community</p>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><a href="https://github.com/msamoeed/qatarairways-tracker" className="hover:text-foreground transition">GitHub</a></li>
                 <li><a href="https://github.com/msamoeed/qatarairways-tracker/issues" className="hover:text-foreground transition">Issues</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Contributing</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Project</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">Changelog</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Roadmap</a></li>
-                <li><a href="#" className="hover:text-foreground transition">License</a></li>
+                <li><a href="#" className="hover:text-foreground transition">Contribute</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-border pt-8">
-            <p className="text-sm text-muted-foreground text-center">
-              Qatar Airways Flight Tracker • Open Source • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-accent hover:text-primary transition">github.com/msamoeed</a>
-            </p>
-          </div>
+          <p className="text-xs text-muted-foreground text-center">
+            Qatar Airways Tracker • MIT License • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-accent hover:text-primary transition">github.com/msamoeed</a>
+          </p>
         </div>
       </footer>
     </div>
   )
 }
 
-function CheckmarkIcon() {
-  return <div className="w-5 h-5 rounded text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5">✓</div>
-}
-
-function Checkmark() {
-  return <span className="text-primary font-bold flex-shrink-0">→</span>
-}
-
-function StatCard({ label, value }) {
-  return (
-    <div className="p-4 rounded-lg bg-card border border-border">
-      <p className="text-xs text-muted-foreground mb-1">{label}</p>
-      <p className="font-bold text-primary text-lg">{value}</p>
-    </div>
-  )
-}
-
 function FeatureCard({ icon, title, description }) {
   return (
-    <div className="p-6 rounded-lg bg-card border border-border hover:border-accent/50 transition group">
-      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition">
-        {icon}
+    <div className="p-3 rounded-lg bg-card border border-border/50 hover:border-accent/50 transition">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-accent text-lg">{icon}</span>
+        <h3 className="text-sm font-bold">{title}</h3>
       </div>
-      <h3 className="font-bold mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
+      <p className="text-xs text-muted-foreground leading-tight">{description}</p>
     </div>
   )
 }
 
-function QuickStartStep({ number, title, description, code }) {
+function CodeBlock({ label, code }) {
   return (
-    <div className="p-6 rounded-lg bg-card border border-border">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
-          {number}
-        </div>
-        <h3 className="font-bold">{title}</h3>
-      </div>
-      <p className="text-sm text-muted-foreground mb-4">{description}</p>
+    <div className="p-4 rounded-lg bg-card border border-border/50">
+      <p className="text-xs text-muted-foreground font-semibold mb-2">{label}</p>
       <div className="bg-background rounded p-3 font-mono text-xs text-muted-foreground overflow-x-auto">
         <code>{code}</code>
       </div>
@@ -390,14 +230,14 @@ function QuickStartStep({ number, title, description, code }) {
 
 function ArchitectureCard({ icon, title, items }) {
   return (
-    <div className="p-8 rounded-lg bg-card border border-border">
-      <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-        <span className="text-accent">{icon}</span> {title}
+    <div className="p-4 rounded-lg bg-card border border-border/50">
+      <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+        <span className="text-accent text-lg">{icon}</span> {title}
       </h3>
-      <ul className="space-y-3">
+      <ul className="space-y-1.5">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-            <span className="text-accent font-bold mt-1">•</span>
+          <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+            <span className="text-accent mt-1">→</span>
             <span>{item}</span>
           </li>
         ))}
@@ -406,14 +246,14 @@ function ArchitectureCard({ icon, title, items }) {
   )
 }
 
-function DocCard({ title, description, icon }) {
+function DocCard({ title, icon }) {
   return (
-    <a href="#" className="p-6 rounded-lg bg-card border border-border hover:border-accent/50 transition group">
-      <div className="flex items-start justify-between mb-3">
-        <h3 className="font-bold">{title}</h3>
-        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition" />
+    <a href="#" className="p-3 rounded-lg bg-card border border-border/50 hover:border-accent/50 transition group">
+      <div className="flex items-center gap-2">
+        <span className="text-accent">{icon}</span>
+        <h3 className="text-xs font-bold group-hover:text-primary transition">{title}</h3>
+        <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-accent transition ml-auto" />
       </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </a>
   )
 }
