@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Menu, X, ChevronRight, Copy, Check, Github, Plane, Clock, Zap, Mail, AlertCircle, Database, Cloud, Terminal, Cpu } from 'lucide-react'
+import { Menu, X, ChevronRight, Copy, Check, Github, Clock, Zap, Mail, AlertCircle, Database, Cloud, Terminal, Cpu } from 'lucide-react'
+import Image from 'next/image'
 
 export default function DocsHome() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -18,11 +19,14 @@ export default function DocsHome() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded bg-primary flex items-center justify-center">
-              <Plane className="w-5 h-5 text-primary-foreground" />
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-md">
+              <Image src="/qa-logo.svg" alt="Qatar Airways Tracker" width={24} height={24} className="invert-0" />
             </div>
-            <span className="font-serif text-sm font-light hidden sm:inline">Qatar Airways Tracker</span>
+            <div>
+              <span className="font-serif text-sm font-light hidden sm:inline block leading-4">Qatar Airways</span>
+              <span className="text-xs text-accent hidden sm:inline block">Flight Tracker</span>
+            </div>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition">How it works</a>
@@ -47,22 +51,28 @@ export default function DocsHome() {
       )}
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 border-b border-border/50">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
+      <section className="relative pt-32 pb-20 border-b border-border/50">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-transparent to-accent/10 pointer-events-none" />
+        <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-5xl sm:text-6xl font-light tracking-wide text-balance mb-6 leading-tight">
+            <div className="mb-6 inline-block px-4 py-2 rounded-full border border-accent/40 bg-accent/10">
+              <span className="text-xs font-semibold text-accent tracking-wider">Open Source • MIT License</span>
+            </div>
+            
+            <h1 className="font-serif text-5xl sm:text-7xl font-light tracking-tight text-balance mb-6 leading-tight">
               Essential information to monitor your flights
             </h1>
-            <p className="text-lg text-muted-foreground text-balance mb-8 max-w-2xl">
+            <p className="text-lg text-muted-foreground text-balance mb-10 max-w-2xl leading-relaxed">
               Automatically monitors Qatar Airways flight availability and sends email alerts the moment anything changes — new availability, sold out, price movements, or seat count changes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#setup" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/20 transition">
+              <a href="#setup" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-xl hover:shadow-primary/30 transition">
                 Get Started <ChevronRight className="w-4 h-4" />
               </a>
-              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-border text-foreground font-medium hover:border-primary/50 transition">
-                <Github className="w-4 h-4" /> GitHub
+              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-accent/40 text-foreground font-medium hover:bg-accent/10 transition">
+                <Github className="w-4 h-4" /> View on GitHub
               </a>
             </div>
           </div>
@@ -530,22 +540,27 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
   }
 
   return (
-    <div className="relative group bg-slate-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-      <div className="text-green-400 whitespace-pre-wrap break-words">
-        <span className="text-accent">$ </span>
-        <span className="text-white">{code}</span>
+    <div className="relative group bg-background border border-border/50 rounded-lg overflow-hidden">
+      <div className="px-4 py-3 bg-card border-b border-border/30 flex justify-between items-center">
+        <span className="text-xs text-muted-foreground font-semibold font-mono">bash</span>
+        <button
+          onClick={handleCopy}
+          className="p-1.5 rounded opacity-0 group-hover:opacity-100 transition hover:bg-primary/10"
+          title="Copy to clipboard"
+        >
+          {localCopied ? (
+            <Check className="w-4 h-4 text-primary" />
+          ) : (
+            <Copy className="w-4 h-4 text-accent" />
+          )}
+        </button>
       </div>
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 p-2 rounded opacity-0 group-hover:opacity-100 transition bg-slate-800 hover:bg-slate-700"
-        title="Copy to clipboard"
-      >
-        {localCopied ? (
-          <Check className="w-4 h-4 text-green-400" />
-        ) : (
-          <Copy className="w-4 h-4 text-muted-foreground" />
-        )}
-      </button>
+      <div className="p-4 font-mono text-sm overflow-x-auto bg-gradient-to-br from-background via-background to-primary/5">
+        <div className="text-foreground whitespace-pre-wrap break-words">
+          <span className="text-accent font-bold">$ </span>
+          <span className="text-foreground">{code}</span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -571,15 +586,18 @@ function ApiEndpoint({ method, path, description }) {
 
 function ArchCard({ icon, title, features }) {
   return (
-    <div className="p-6 bg-card border border-border/50 rounded-lg">
+    <div className="p-6 bg-card border border-border/50 rounded-lg hover:border-accent/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
       <div className="flex items-center gap-3 mb-4">
-        <div className="text-accent">{icon}</div>
-        <h3 className="font-bold">{title}</h3>
+        <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center text-primary">
+          {icon}
+        </div>
+        <h3 className="font-bold text-primary">{title}</h3>
       </div>
-      <ul className="space-y-2">
+      <ul className="space-y-2.5">
         {features.map((feature, i) => (
-          <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-            <span className="text-accent">→</span> {feature}
+          <li key={i} className="text-sm text-muted-foreground flex items-start gap-3">
+            <span className="text-accent font-bold mt-0.5">→</span> 
+            <span className="leading-relaxed">{feature}</span>
           </li>
         ))}
       </ul>

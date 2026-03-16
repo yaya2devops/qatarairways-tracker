@@ -1,0 +1,31 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#5C0632" stroke-width="2"/>
+  
+  <!-- Falcon head silhouette (Qatar Airways brand symbol) -->
+  <g fill="#5C0632">
+    <!-- Head -->
+    <ellipse cx="100" cy="80" rx="24" ry="28"/>
+    
+    <!-- Beak -->
+    <path d="M 120 75 L 145 65 L 125 82 Z"/>
+    
+    <!-- Eye ring -->
+    <circle cx="108" cy="75" r="4" fill="#fafbfc"/>
+    <circle cx="108" cy="75" r="2" fill="#5C0632"/>
+    
+    <!-- Wing feathers (right) -->
+    <path d="M 115 90 Q 135 85 150 95 Q 140 100 125 98 Z" opacity="0.8"/>
+    <path d="M 118 100 Q 138 98 155 110 Q 145 115 128 110 Z" opacity="0.7"/>
+    
+    <!-- Tail feathers -->
+    <path d="M 85 105 Q 75 115 70 135 Q 78 125 90 118 Z" opacity="0.8"/>
+    <path d="M 82 108 Q 68 120 60 145 Q 72 130 88 120 Z" opacity="0.7"/>
+  </g>
+  
+  <!-- Accent line -->
+  <line x1="45" y1="160" x2="155" y2="160" stroke="#747F8A" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Text -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#747F8A" text-anchor="middle" letter-spacing="2">QA TRACKER</text>
+</svg>
