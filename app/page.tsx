@@ -1,294 +1,326 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Menu, X, ChevronRight, Code2, Zap, BarChart3, Github, Plane, Cpu, Cloud, Terminal, Sparkles, Copy, Check } from 'lucide-react'
+import { Menu, X, ChevronRight, Copy, Check, Github, Plane, Clock, Zap, Mail, AlertCircle, Database, Cloud, Terminal, Cpu } from 'lucide-react'
 
 export default function DocsHome() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [copiedCode, setCopiedCode] = useState<number | null>(null)
+  const [copied, setCopied] = useState<string | null>(null)
 
-  const copyToClipboard = (code: string, index: number) => {
+  const copyToClipboard = (code: string, id: string) => {
     navigator.clipboard.writeText(code)
-    setCopiedCode(index)
-    setTimeout(() => setCopiedCode(null), 2000)
+    setCopied(id)
+    setTimeout(() => setCopied(null), 2000)
   }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 backdrop-blur-lg bg-background/98 h-16">
-        <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg">
-              <Plane className="w-5 h-5 text-white" />
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded bg-primary flex items-center justify-center">
+              <Plane className="w-5 h-5 text-primary-foreground" />
             </div>
-            <div>
-              <p className="text-sm font-semibold tracking-tight">Qatar Airways</p>
-              <p className="text-xs text-muted-foreground font-light">Flight Tracker</p>
-            </div>
+            <span className="font-serif text-sm font-light hidden sm:inline">Qatar Airways Tracker</span>
           </div>
-          <div className="hidden lg:flex items-center gap-8">
-            <a href="#overview" className="text-sm text-muted-foreground hover:text-foreground transition">Overview</a>
-            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition">Features</a>
-            <a href="#getting-started" className="text-sm text-muted-foreground hover:text-foreground transition">Getting Started</a>
-            <a href="#architecture" className="text-sm text-muted-foreground hover:text-foreground transition">Architecture</a>
-            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:text-primary/80 transition flex items-center gap-2 font-medium">
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition">How it works</a>
+            <a href="#setup" className="text-muted-foreground hover:text-foreground transition">Setup</a>
+            <a href="#api" className="text-muted-foreground hover:text-foreground transition">API</a>
+            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition flex items-center gap-1">
               <Github className="w-4 h-4" /> GitHub
             </a>
           </div>
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden">
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-foreground">
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed top-16 left-0 right-0 border-b border-border/30 bg-card/95 backdrop-blur-lg p-6 space-y-4 z-40">
-          <a href="#overview" className="block text-sm text-muted-foreground hover:text-foreground">Overview</a>
-          <a href="#features" className="block text-sm text-muted-foreground hover:text-foreground">Features</a>
-          <a href="#getting-started" className="block text-sm text-muted-foreground hover:text-foreground">Getting Started</a>
-          <a href="#architecture" className="block text-sm text-muted-foreground hover:text-foreground">Architecture</a>
-          <a href="https://github.com/msamoeed/qatarairways-tracker" className="block text-sm text-primary">GitHub</a>
+        <div className="fixed top-14 left-0 right-0 z-40 border-b border-border/50 bg-card p-3 space-y-2">
+          <a href="#how-it-works" className="block text-sm text-muted-foreground hover:text-foreground p-2">How it works</a>
+          <a href="#setup" className="block text-sm text-muted-foreground hover:text-foreground p-2">Setup</a>
+          <a href="#api" className="block text-sm text-muted-foreground hover:text-foreground p-2">API</a>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/15 border border-accent/40 text-xs font-semibold text-accent tracking-wide">Open Source • MIT License</span>
-          </div>
-          <h1 className="font-serif text-6xl sm:text-7xl font-light leading-tight tracking-tight mb-6">
-            Essential information to monitor your flights
-          </h1>
-          <p className="text-xl text-muted-foreground font-light max-w-2xl mb-10 leading-relaxed">
-            Qatar Airways Flight Tracker provides real-time monitoring, price tracking, and instant email alerts. Built with TypeScript, NestJS, Next.js, and PostgreSQL for seamless performance.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#getting-started" className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-xl hover:shadow-primary/20 transition">
-              Get Started <ChevronRight className="w-4 h-4 ml-2" />
-            </a>
-            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 rounded-lg border border-border hover:border-primary/50 text-foreground font-medium transition">
-              <Github className="w-4 h-4 mr-2" /> View Repository
-            </a>
+      <section className="relative pt-28 pb-16 border-b border-border/50">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+          <div className="max-w-3xl">
+            <h1 className="font-serif text-5xl sm:text-6xl font-light tracking-wide text-balance mb-6 leading-tight">
+              Essential information to monitor your flights
+            </h1>
+            <p className="text-lg text-muted-foreground text-balance mb-8 max-w-2xl">
+              Automatically monitors Qatar Airways flight availability and sends email alerts the moment anything changes — new availability, sold out, price movements, or seat count changes.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#setup" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/20 transition">
+                Get Started <ChevronRight className="w-4 h-4" />
+              </a>
+              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-border text-foreground font-medium hover:border-primary/50 transition">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section id="overview" className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="font-serif text-4xl font-light mb-4">What is Qatar Airways Tracker?</h2>
-            <p className="text-lg text-muted-foreground font-light max-w-2xl">A comprehensive full-stack application designed to monitor Qatar Airways flight availability and prices in real-time with instant email notifications.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold text-lg mb-3">Key Capabilities</h3>
-                <ul className="space-y-3">
-                  <li className="flex gap-3">
-                    <span className="text-accent text-xl leading-none mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">Real-Time Monitoring</p>
-                      <p className="text-sm text-muted-foreground">Track Qatar Airways flights 24/7 with automatic updates every minute</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-accent text-xl leading-none mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">Email Alerts</p>
-                      <p className="text-sm text-muted-foreground">Instant notifications when prices drop or flights become available</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-accent text-xl leading-none mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">Price Analytics</p>
-                      <p className="text-sm text-muted-foreground">Track historical pricing trends and identify savings opportunities</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-accent text-xl leading-none mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">Seat Tracking</p>
-                      <p className="text-sm text-muted-foreground">Monitor available seats by cabin class across all tracked routes</p>
-                    </div>
-                  </li>
-                </ul>
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 border-t border-border/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-4xl font-light mb-12">How it works</h2>
+
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            <div>
+              <div className="space-y-6">
+                <FlowStep
+                  number={1}
+                  title="Polls Qatar Airways API"
+                  description="Automatically checks for flight availability every 10 minutes using headless browser (Playwright) to maintain valid session cookies and bypass Akamai bot protection."
+                  icon={<Clock className="w-6 h-6" />}
+                />
+                <FlowStep
+                  number={2}
+                  title="Compares against previous state"
+                  description="Detects exactly what changed: availability status, prices, seat counts. Only triggers alerts on actual changes, not on every poll."
+                  icon={<Zap className="w-6 h-6" />}
+                />
+                <FlowStep
+                  number={3}
+                  title="Sends email alerts immediately"
+                  description="Notifies you via email the moment anything changes. Includes flight details, what changed, and new availability info."
+                  icon={<Mail className="w-6 h-6" />}
+                />
               </div>
             </div>
+
+            <div className="space-y-4">
+              <div className="rounded-lg border border-border/50 bg-card p-6">
+                <h3 className="font-bold text-sm text-primary mb-4 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4" />
+                  Email Alert Events
+                </h3>
+                <div className="space-y-3">
+                  <AlertEvent emoji="🟢" event="Flight becomes available" subject="QR DOH→ISB 2026-03-29: Now Available" />
+                  <AlertEvent emoji="🔴" event="Flight sells out" subject="QR DOH→ISB 2026-03-29: Sold Out / Removed" />
+                  <AlertEvent emoji="💰" event="Price changes" subject="QR DOH→ISB 2026-03-29: Price Changed" />
+                  <AlertEvent emoji="💺" event="Seat count changes" subject="QR DOH→ISB 2026-03-29: Seats Changed" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Setup Section */}
+      <section id="setup" className="py-20 px-4 sm:px-6 border-t border-border/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-4xl font-light mb-12">Ready to get started?</h2>
+
+          {/* Local Setup */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-serif font-light mb-8">Local Development</h3>
             
-            <div className="bg-card border border-border/50 rounded-xl p-8 sticky top-24">
-              <div className="space-y-4">
-                <div className="pb-4 border-b border-border/30">
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Example Flight</p>
-                      <p className="text-lg font-semibold mt-1">DOH → LHR</p>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-semibold">Available</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-1">Price</p>
-                    <p className="text-2xl font-semibold">QR 2,450</p>
-                    <p className="text-xs text-green-600 dark:text-green-400 font-semibold mt-1">↓ 8% from last week</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-1">Seats</p>
-                    <p className="text-2xl font-semibold">12</p>
-                    <p className="text-xs text-muted-foreground mt-1">Economy available</p>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-border/30">
-                  <p className="text-xs text-muted-foreground">Last updated: 2 minutes ago</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span className="text-xs text-green-600 dark:text-green-400 font-semibold">Live monitoring</span>
-                  </div>
-                </div>
+            <SetupStep 
+              step={1}
+              title="Install dependencies"
+              commands={[
+                'npm install',
+                'npx playwright install chromium'
+              ]}
+            />
+
+            <SetupStep 
+              step={2}
+              title="Configure environment"
+              description="Copy the example environment file and fill in your SMTP details:"
+              commands={[
+                'cp .env.example .env',
+                'nano .env   # Edit with your SMTP configuration'
+              ]}
+            />
+
+            <div className="mb-8 p-6 bg-card border border-border/50 rounded-lg">
+              <p className="text-sm font-mono text-muted-foreground mb-4">Required environment variables:</p>
+              <div className="space-y-2 font-mono text-xs text-muted-foreground">
+                <div><span className="text-accent">EMAIL_HOST=</span>smtp.yourserver.com</div>
+                <div><span className="text-accent">EMAIL_PORT=</span>587</div>
+                <div><span className="text-accent">EMAIL_USER=</span>you@yourdomain.com</div>
+                <div><span className="text-accent">EMAIL_PASS=</span>your_password</div>
+                <div><span className="text-accent">EMAIL_FROM=</span>noreply@yourdomain.com</div>
+                <div><span className="text-accent">EMAIL_TO=</span>recipient1@example.com,recipient2@example.com</div>
+                <div><span className="text-accent">PORT=</span>3000</div>
               </div>
             </div>
+
+            <SetupStep 
+              step={3}
+              title="Run the application"
+              commands={[
+                'npm run start:dev          # Development with watch mode',
+                'npm run build && npm run start:prod  # Production'
+              ]}
+            />
+          </div>
+
+          {/* Docker Setup */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-serif font-light mb-8">Docker Deployment</h3>
+            <p className="text-muted-foreground mb-8">You only need two files on the server — no need to clone the full repo.</p>
+
+            <SetupStep 
+              step={1}
+              title="Create a directory"
+              commands={['mkdir qatarairways-tracker && cd qatarairways-tracker']}
+            />
+
+            <SetupStep 
+              step={2}
+              title="Download compose and env files"
+              commands={[
+                'curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/docker-compose.yml',
+                'curl -O https://raw.githubusercontent.com/msamoeed/qatarairways-tracker/main/.env.example'
+              ]}
+            />
+
+            <SetupStep 
+              step={3}
+              title="Create and configure env file"
+              commands={[
+                'cp .env.example .env',
+                'nano .env   # Fill in your SMTP details'
+              ]}
+            />
+
+            <SetupStep 
+              step={4}
+              title="Pull the Docker image"
+              description="The image is public on GitHub Container Registry — no login required."
+              commands={['docker compose pull']}
+            />
+
+            <SetupStep 
+              step={5}
+              title="Start the container"
+              commands={['docker compose up -d']}
+            />
+
+            <SetupStep 
+              step={6}
+              title="Verify it's running"
+              commands={[
+                'docker compose ps',
+                'docker compose logs -f'
+              ]}
+              description="You should see the session service starting and the application running on port 3000."
+            />
+
+            <SetupStep 
+              step={7}
+              title="Test your email"
+              commands={['curl -X POST http://your-server:3000/notifier/test']}
+              description="Check your inbox for the test email to verify SMTP is working."
+            />
+
+            <SetupStep 
+              step={8}
+              title="Add flights to track"
+              commands={[
+                'curl -X POST http://your-server:3000/flights \\',
+                '  -H "Content-Type: application/json" \\',
+                '  -d \'{',
+                '    "origin":"DOH",',
+                '    "destination":"ISB",',
+                '    "departureDate":"2026-03-29",',
+                '    "cabinClass":"ECONOMY"',
+                '  }\''
+              ]}
+              description="The tracker will now poll every 10 minutes and email you on any changes."
+            />
+          </div>
+
+          {/* Update */}
+          <div className="p-6 bg-card border border-border/50 rounded-lg">
+            <h4 className="font-bold mb-4 flex items-center gap-2">
+              <Cloud className="w-5 h-5 text-accent" />
+              Update to latest version
+            </h4>
+            <CodeBlock 
+              code="docker compose pull && docker compose up -d"
+              id="update"
+              onCopy={copyToClipboard}
+              isCopied={copied === 'update'}
+            />
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="font-serif text-4xl font-light mb-4">Core Features</h2>
-            <p className="text-lg text-muted-foreground font-light">Everything you need to track Qatar Airways flights with precision.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <FeatureCard 
-              icon={<Zap className="w-5 h-5" />}
-              title="Real-Time Updates"
-              description="Live flight availability and pricing refreshed automatically every minute with instant notifications"
-            />
-            <FeatureCard 
-              icon={<BarChart3 className="w-5 h-5" />}
-              title="Price Analytics"
-              description="Track price trends with visual charts, historical data, and advanced statistics for better decisions"
-            />
-            <FeatureCard 
-              icon={<Terminal className="w-5 h-5" />}
-              title="REST & GraphQL APIs"
-              description="Flexible API endpoints with comprehensive documentation for seamless integration with any platform"
-            />
-            <FeatureCard 
-              icon={<Database className="w-5 h-5" />}
-              title="Data Persistence"
-              description="PostgreSQL database with historical tracking, retention policies, and data integrity assurance"
-            />
-          </div>
-        </div>
-      </section>
+      {/* API Section */}
+      <section id="api" className="py-20 px-4 sm:px-6 border-t border-border/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-4xl font-light mb-12">REST API</h2>
 
-      {/* Getting Started Section */}
-      <section id="getting-started" className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="font-serif text-4xl font-light mb-4">Ready to get started?</h2>
-            <p className="text-lg text-muted-foreground font-light">Set up the Qatar Airways Flight Tracker in just a few minutes.</p>
-          </div>
-
-          <div className="space-y-10">
-            {/* Step 1 */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div>
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold"><span className="text-accent font-light">Step 1:</span> Clone the repository</h3>
-                <p className="text-muted-foreground text-sm mt-1">Download the source code from GitHub to your local machine</p>
-              </div>
-              <CodeBlock 
-                code="git clone https://github.com/msamoeed/qatarairways-tracker.git"
-                index={0}
-                copied={copiedCode === 0}
-                onCopy={() => copyToClipboard("git clone https://github.com/msamoeed/qatarairways-tracker.git", 0)}
-              />
-            </div>
-
-            {/* Step 2 */}
-            <div>
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold"><span className="text-accent font-light">Step 2:</span> Install dependencies</h3>
-                <p className="text-muted-foreground text-sm mt-1">Set up both backend and frontend dependencies</p>
-              </div>
+              <h3 className="text-xl font-bold mb-6">Flights</h3>
               <div className="space-y-3">
-                <CodeBlock 
-                  code="cd qatarairways-tracker && npm install"
-                  index={1}
-                  copied={copiedCode === 1}
-                  onCopy={() => copyToClipboard("cd qatarairways-tracker && npm install", 1)}
-                />
-                <CodeBlock 
-                  code="cd frontend && npm install"
-                  index={2}
-                  copied={copiedCode === 2}
-                  onCopy={() => copyToClipboard("cd frontend && npm install", 2)}
-                />
+                <ApiEndpoint method="GET" path="/flights" description="List all tracked flights" />
+                <ApiEndpoint method="POST" path="/flights" description="Track a single date" />
+                <ApiEndpoint method="POST" path="/flights/range" description="Track every day in a date range" />
+                <ApiEndpoint method="POST" path="/flights/check-now" description="Trigger a manual check immediately" />
+                <ApiEndpoint method="PATCH" path="/flights/:id/active" description="Pause or resume tracking" />
+                <ApiEndpoint method="DELETE" path="/flights/:id" description="Remove a tracked flight" />
               </div>
             </div>
 
-            {/* Step 3 */}
             <div>
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold"><span className="text-accent font-light">Step 3:</span> Configure environment</h3>
-                <p className="text-muted-foreground text-sm mt-1">Create and update environment variable files</p>
+              <h3 className="text-xl font-bold mb-6">Other</h3>
+              <div className="space-y-3">
+                <ApiEndpoint method="GET" path="/session" description="View current session metadata" />
+                <ApiEndpoint method="POST" path="/session/refresh" description="Force a cookie refresh via Playwright" />
+                <ApiEndpoint method="POST" path="/notifier/test" description="Send a test email" />
               </div>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-bold mb-4">Track a single date</h3>
               <CodeBlock 
-                code="cp .env.example .env && cp frontend/.env.example frontend/.env"
-                index={3}
-                copied={copiedCode === 3}
-                onCopy={() => copyToClipboard("cp .env.example .env && cp frontend/.env.example frontend/.env", 3)}
+                id="single-date"
+                code={`curl -X POST http://localhost:3000/flights \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "origin": "DOH",
+    "destination": "ISB",
+    "departureDate": "2026-03-29",
+    "cabinClass": "ECONOMY",
+    "adults": 1
+  }'`}
+                onCopy={copyToClipboard}
+                isCopied={copied === 'single-date'}
               />
-              <p className="text-xs text-muted-foreground mt-3">Update the .env files with your configuration. Check the documentation for required variables.</p>
             </div>
 
-            {/* Step 4 */}
             <div>
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold"><span className="text-accent font-light">Step 4:</span> Start the development servers</h3>
-                <p className="text-muted-foreground text-sm mt-1">Run both backend and frontend in development mode</p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div>
-                  <p className="text-xs text-muted-foreground font-semibold mb-2">Terminal 1 (Backend):</p>
-                  <CodeBlock 
-                    code="npm run dev"
-                    index={4}
-                    copied={copiedCode === 4}
-                    onCopy={() => copyToClipboard("npm run dev", 4)}
-                  />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground font-semibold mb-2">Terminal 2 (Frontend):</p>
-                  <CodeBlock 
-                    code="cd frontend && npm run dev"
-                    index={5}
-                    copied={copiedCode === 5}
-                    onCopy={() => copyToClipboard("cd frontend && npm run dev", 5)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Step 5 */}
-            <div>
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold"><span className="text-accent font-light">Step 5:</span> Open in your browser</h3>
-                <p className="text-muted-foreground text-sm mt-1">Access the application through your browser</p>
-              </div>
+              <h3 className="text-lg font-bold mb-4">Track a date range</h3>
               <CodeBlock 
-                code="open http://localhost:3000"
-                index={6}
-                copied={copiedCode === 6}
-                onCopy={() => copyToClipboard("open http://localhost:3000", 6)}
+                id="date-range"
+                code={`curl -X POST http://localhost:3000/flights/range \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "origin": "DOH",
+    "destination": "ISB",
+    "from": "2026-03-15",
+    "to": "2026-04-04",
+    "cabinClass": "ECONOMY"
+  }'`}
+                onCopy={copyToClipboard}
+                isCopied={copied === 'date-range'}
               />
             </div>
           </div>
@@ -296,219 +328,261 @@ export default function DocsHome() {
       </section>
 
       {/* Architecture Section */}
-      <section id="architecture" className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="font-serif text-4xl font-light mb-4">Architecture Overview</h2>
-            <p className="text-lg text-muted-foreground font-light">Full-stack TypeScript application with modern tooling and best practices.</p>
-          </div>
+      <section className="py-20 px-4 sm:px-6 border-t border-border/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-4xl font-light mb-12">Architecture</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <ArchitectureCard
-              title="Backend Services"
-              items={[
-                { label: "Framework", value: "NestJS 10+" },
-                { label: "Database", value: "PostgreSQL 15+" },
-                { label: "ORM", value: "TypeORM / Prisma" },
-                { label: "API", value: "REST + GraphQL" },
-                { label: "Real-Time", value: "WebSockets" },
-                { label: "Email", value: "SendGrid Integration" },
+          <div className="grid md:grid-cols-3 gap-6">
+            <ArchCard
+              icon={<Terminal className="w-6 h-6" />}
+              title="Backend (NestJS)"
+              features={[
+                'REST API endpoints',
+                'Email notification service',
+                'Session management',
+                'Automated flight polling',
+                'Cron-based scheduling',
+                'SQLite persistence'
               ]}
             />
-            <ArchitectureCard
-              title="Frontend Application"
-              items={[
-                { label: "Framework", value: "Next.js 16" },
-                { label: "Styling", value: "Tailwind CSS" },
-                { label: "State", value: "React Query / SWR" },
-                { label: "Charts", value: "Recharts" },
-                { label: "Language", value: "TypeScript" },
-                { label: "Deployment", value: "Vercel" },
+            <ArchCard
+              icon={<Database className="w-6 h-6" />}
+              title="Database (SQLite)"
+              features={[
+                'Auto-created tables',
+                'Persistent storage',
+                'Session cookies cached',
+                'Flight state tracking',
+                'Docker volume persistence',
+                '2-hour session TTL'
+              ]}
+            />
+            <ArchCard
+              icon={<Cloud className="w-6 h-6" />}
+              title="CI/CD (GitHub Actions)"
+              features={[
+                'Auto Docker builds',
+                'Push to GHCR',
+                'Triggers on every commit',
+                'Public image (no auth)',
+                'Semantic versioning',
+                'Full automation'
               ]}
             />
           </div>
         </div>
       </section>
 
-      {/* API Preview Section */}
-      <section className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="font-serif text-4xl font-light mb-4">API Endpoints</h2>
-            <p className="text-lg text-muted-foreground font-light">RESTful API with comprehensive documentation for integration.</p>
-          </div>
-
-          <div className="space-y-4">
-            <APIEndpointCard 
-              method="GET"
-              endpoint="/api/flights"
-              description="Retrieve all tracked flights with real-time data"
-            />
-            <APIEndpointCard 
-              method="POST"
-              endpoint="/api/flights"
-              description="Create a new flight tracking entry"
-            />
-            <APIEndpointCard 
-              method="GET"
-              endpoint="/api/prices/{flightId}"
-              description="Get historical price data for a specific flight"
-            />
-            <APIEndpointCard 
-              method="GET"
-              endpoint="/api/alerts"
-              description="Fetch all alerts and notifications"
-            />
+      {/* Session Management Section */}
+      <section className="py-20 px-4 sm:px-6 border-t border-border/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-4xl font-light mb-8">Session Management</h2>
+          <div className="bg-card border border-border/50 rounded-lg p-8">
+            <p className="text-muted-foreground mb-6">
+              Qatar Airways uses Akamai bot protection. The tracker handles this automatically:
+            </p>
+            <ul className="space-y-4 text-muted-foreground">
+              <li className="flex gap-3">
+                <span className="text-accent font-bold">•</span>
+                <span><strong>On startup:</strong> Launches headless Chrome, visits the QR homepage, captures cookies</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-accent font-bold">•</span>
+                <span><strong>Session TTL:</strong> Sessions stored in DB with 2-hour expiration</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-accent font-bold">•</span>
+                <span><strong>Proactive refresh:</strong> Refreshes 15 minutes before expiry</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-accent font-bold">•</span>
+                <span><strong>Error handling:</strong> On any 400/401/403 response, immediately refreshes and retries</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Repository Info Section */}
-      <section className="py-20 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-card border border-border/50 rounded-xl p-8">
-            <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+      {/* Repository Section */}
+      <section className="py-20 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-primary/10 to-transparent border border-border/50 rounded-lg p-8">
+            <div className="flex flex-col sm:flex-row items-start justify-between gap-6">
               <div>
-                <h3 className="font-serif text-3xl font-light mb-3">Open Source on GitHub</h3>
-                <p className="text-muted-foreground max-w-lg mb-4">Qatar Airways Flight Tracker is open source and welcomes contributions from developers worldwide.</p>
+                <h3 className="text-2xl font-serif font-light mb-3">Open Source</h3>
+                <p className="text-muted-foreground mb-4">
+                  Qatar Airways Flight Tracker is fully open source and publicly available on GitHub. All contributions welcome.
+                </p>
                 <div className="space-y-2 text-sm font-mono text-muted-foreground">
-                  <p><span className="text-accent font-bold">Repository:</span> github.com/msamoeed/qatarairways-tracker</p>
-                  <p><span className="text-accent font-bold">License:</span> MIT Open Source</p>
-                  <p><span className="text-accent font-bold">Language:</span> TypeScript</p>
+                  <div><span className="text-accent font-bold">Repository:</span> github.com/msamoeed/qatarairways-tracker</div>
+                  <div><span className="text-accent font-bold">License:</span> MIT</div>
+                  <div><span className="text-accent font-bold">Latest:</span> Automated Docker builds on every push</div>
                 </div>
               </div>
-              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-xl hover:shadow-primary/20 transition whitespace-nowrap">
-                <Github className="w-4 h-4" /> Visit GitHub
+              <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/20 transition whitespace-nowrap">
+                <Github className="w-5 h-5" /> Visit GitHub
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 border-t border-border/30 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="font-serif text-4xl font-light mb-4">Start monitoring flights today</h2>
-          <p className="text-lg text-muted-foreground font-light mb-12 max-w-2xl mx-auto">Complete documentation, API reference, and examples included. Deploy in minutes.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#getting-started" className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-xl hover:shadow-primary/20 transition">
-              Get Started <ChevronRight className="w-4 h-4 ml-2" />
-            </a>
-            <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3 rounded-lg border border-border hover:border-primary/50 font-medium transition">
-              <Github className="w-4 h-4 mr-2" /> Star on GitHub
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-border/30 py-12 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12 mb-12 pb-12 border-b border-border/30">
+      <footer className="border-t border-border/50 bg-card/50 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+          <div className="grid sm:grid-cols-3 gap-8 mb-8">
             <div>
-              <p className="font-semibold text-sm mb-4">Documentation</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">Installation</a></li>
-                <li><a href="#" className="hover:text-foreground transition">API Reference</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Configuration</a></li>
+              <h4 className="font-bold text-sm mb-3">Documentation</h4>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li><a href="#how-it-works" className="hover:text-foreground transition">How it works</a></li>
+                <li><a href="#setup" className="hover:text-foreground transition">Setup & Deploy</a></li>
+                <li><a href="#api" className="hover:text-foreground transition">API Reference</a></li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-4">Community</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="https://github.com/msamoeed/qatarairways-tracker" className="hover:text-foreground transition">GitHub</a></li>
-                <li><a href="https://github.com/msamoeed/qatarairways-tracker/issues" className="hover:text-foreground transition">Issues</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Contributing</a></li>
+              <h4 className="font-bold text-sm mb-3">Resources</h4>
+              <ul className="space-y-1 text-xs text-muted-foreground">
+                <li><a href="https://github.com/msamoeed/qatarairways-tracker" className="hover:text-foreground transition">GitHub Repository</a></li>
+                <li><a href="https://github.com/msamoeed/qatarairways-tracker/issues" className="hover:text-foreground transition">Report Issues</a></li>
+                <li><a href="#" className="hover:text-foreground transition">Contributing Guide</a></li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-4">Project</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <h4 className="font-bold text-sm mb-3">Project</h4>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><a href="#" className="hover:text-foreground transition">Changelog</a></li>
                 <li><a href="#" className="hover:text-foreground transition">Roadmap</a></li>
-                <li><a href="#" className="hover:text-foreground transition">License</a></li>
+                <li><a href="#" className="hover:text-foreground transition">MIT License</a></li>
               </ul>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground text-center">
-            Qatar Airways Flight Tracker © 2026 • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-accent hover:text-primary transition">github.com/msamoeed</a> • MIT License
-          </p>
+          <div className="border-t border-border/50 pt-8">
+            <p className="text-xs text-muted-foreground text-center">
+              Qatar Airways Flight Tracker • Open Source • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-accent hover:text-primary transition">github.com/msamoeed</a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
   )
 }
 
-function FeatureCard({ icon, title, description }: any) {
+function FlowStep({ number, title, description, icon }) {
   return (
-    <div className="p-8 rounded-xl bg-card border border-border/50 hover:border-accent/50 transition group">
-      <div className="w-12 h-12 rounded-lg bg-accent/15 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition">
-        {icon}
-      </div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground leading-relaxed">{description}</p>
-    </div>
-  )
-}
-
-function CodeBlock({ code, index, copied, onCopy }: any) {
-  return (
-    <div className="relative group">
-      <div className="bg-slate-900 rounded-lg p-6 border border-slate-800/50 overflow-x-auto">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-accent font-bold">$</span>
-          <code className="text-slate-100">{code}</code>
+    <div className="flex gap-4">
+      <div className="flex-shrink-0">
+        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
+          {icon}
         </div>
       </div>
-      <button
-        onClick={onCopy}
-        className="absolute right-4 top-4 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-700 opacity-0 group-hover:opacity-100 transition"
-      >
-        {copied ? (
-          <Check className="w-4 h-4 text-green-500" />
-        ) : (
-          <Copy className="w-4 h-4 text-slate-400" />
-        )}
-      </button>
+      <div>
+        <h3 className="font-bold mb-2">{number}. {title}</h3>
+        <p className="text-muted-foreground text-sm">{description}</p>
+      </div>
     </div>
   )
 }
 
-function ArchitectureCard({ title, items }: any) {
+function AlertEvent({ emoji, event, subject }) {
   return (
-    <div className="p-8 rounded-xl bg-card border border-border/50">
-      <h3 className="text-xl font-semibold mb-6">{title}</h3>
-      <div className="space-y-4">
-        {items.map((item: any, i: number) => (
-          <div key={i} className="flex justify-between items-start pb-4 border-b border-border/30 last:border-0 last:pb-0">
-            <span className="text-sm text-muted-foreground font-medium">{item.label}</span>
-            <span className="text-sm font-semibold text-accent">{item.value}</span>
-          </div>
+    <div className="border-b border-border/30 last:border-0 pb-3 last:pb-0">
+      <div className="flex items-start gap-3">
+        <span className="text-lg">{emoji}</span>
+        <div>
+          <p className="text-xs font-bold text-foreground">{event}</p>
+          <p className="text-xs text-muted-foreground font-mono mt-1">{subject}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SetupStep({ step, title, description, commands }) {
+  return (
+    <div className="mb-8">
+      <div className="flex items-baseline gap-3 mb-4">
+        <span className="text-accent font-bold text-lg">Step {step}</span>
+        <h4 className="text-lg font-bold">{title}</h4>
+      </div>
+      {description && <p className="text-muted-foreground text-sm mb-4">{description}</p>}
+      <div className="space-y-2">
+        {commands.map((cmd, i) => (
+          <CodeBlock 
+            key={i}
+            code={cmd}
+            id={`step-${step}-${i}`}
+            onCopy={() => {}}
+            isCopied={false}
+          />
         ))}
       </div>
     </div>
   )
 }
 
-function APIEndpointCard({ method, endpoint, description }: any) {
-  const methodColors = {
-    GET: "bg-blue-500/20 text-blue-400",
-    POST: "bg-green-500/20 text-green-400",
-    PUT: "bg-yellow-500/20 text-yellow-400",
-    DELETE: "bg-red-500/20 text-red-400"
+function CodeBlock({ code, id, onCopy, isCopied }) {
+  const [localCopied, setLocalCopied] = React.useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code)
+    setLocalCopied(true)
+    setTimeout(() => setLocalCopied(false), 2000)
   }
-  
+
   return (
-    <div className="p-6 rounded-lg bg-card border border-border/50 hover:border-accent/50 transition flex items-start justify-between">
-      <div className="flex-1">
-        <div className="flex items-center gap-3 mb-2">
-          <span className={`px-3 py-1 rounded font-mono text-xs font-bold ${methodColors[method as keyof typeof methodColors]}`}>
-            {method}
-          </span>
-          <code className="font-mono text-sm text-accent">{endpoint}</code>
-        </div>
-        <p className="text-sm text-muted-foreground">{description}</p>
+    <div className="relative group bg-slate-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+      <div className="text-green-400 whitespace-pre-wrap break-words">
+        <span className="text-accent">$ </span>
+        <span className="text-white">{code}</span>
       </div>
+      <button
+        onClick={handleCopy}
+        className="absolute top-2 right-2 p-2 rounded opacity-0 group-hover:opacity-100 transition bg-slate-800 hover:bg-slate-700"
+        title="Copy to clipboard"
+      >
+        {localCopied ? (
+          <Check className="w-4 h-4 text-green-400" />
+        ) : (
+          <Copy className="w-4 h-4 text-muted-foreground" />
+        )}
+      </button>
+    </div>
+  )
+}
+
+function ApiEndpoint({ method, path, description }) {
+  const methodColors = {
+    GET: 'text-blue-400',
+    POST: 'text-green-400',
+    PATCH: 'text-yellow-400',
+    DELETE: 'text-red-400'
+  }
+
+  return (
+    <div className="p-3 bg-card border border-border/50 rounded-lg">
+      <div className="flex items-center gap-3 mb-2">
+        <span className={`font-bold text-sm ${methodColors[method]}`}>{method}</span>
+        <span className="font-mono text-sm text-muted-foreground">{path}</span>
+      </div>
+      <p className="text-xs text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function ArchCard({ icon, title, features }) {
+  return (
+    <div className="p-6 bg-card border border-border/50 rounded-lg">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="text-accent">{icon}</div>
+        <h3 className="font-bold">{title}</h3>
+      </div>
+      <ul className="space-y-2">
+        {features.map((feature, i) => (
+          <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+            <span className="text-accent">→</span> {feature}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
