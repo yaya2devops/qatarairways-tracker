@@ -549,7 +549,7 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
   return (
     <div className="relative group rounded-lg overflow-hidden border border-border/30 shadow-sm hover:shadow-lg transition-shadow duration-300">
       <div className="px-4 py-3 bg-card border-b border-border/30 flex justify-between items-center">
-        <span className="text-xs font-medium font-mono text-accent">bash</span>
+        <span className="text-xs font-medium font-mono text-primary">bash</span>
         <button
           onClick={handleCopy}
           className="p-1.5 rounded opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/15"
