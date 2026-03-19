@@ -61,7 +61,7 @@ export default function DocsHome() {
               <span className="text-xs font-semibold text-accent tracking-wider">Open Source • MIT License</span>
             </div>
             
-            <h1 className="font-[family-name:var(--font-jotia)] text-5xl sm:text-7xl font-medium tracking-tight text-balance mb-6 leading-tight text-foreground">
+            <h1 className="font-[family-name:var(--font-outfit)] text-5xl sm:text-7xl font-medium tracking-tight text-balance mb-6 leading-tight text-foreground">
               Essential information to monitor your flights
             </h1>
             <p className="text-lg text-muted-foreground text-balance mb-10 max-w-2xl leading-relaxed">
@@ -493,7 +493,7 @@ function FlowStep({ number, title, description, icon }) {
         </div>
       </div>
       <div className="flex-1">
-        <h3 className="font-medium font-[family-name:var(--font-jotia)] mb-1 text-foreground">{number}. {title}</h3>
+        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-foreground">{number}. {title}</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Jotia } from 'next/font/google'
+import { Geist, Geist_Mono, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const _jotia = Jotia({ subsets: ["latin"], variable: "--font-jotia", weight: ["400", "500"] });
+const _outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: 'Qatar Airways Flight Tracker - Real-Time Monitoring',
@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={_jotia.variable}>
+    <html lang="en" className={_outfit.variable}>
       <body className="font-sans antialiased">
         {children}
         <Analytics />
