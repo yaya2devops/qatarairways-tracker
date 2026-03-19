@@ -82,7 +82,7 @@ export default function DocsHome() {
       {/* How It Works Section */}
       <section id="how-it-works" className="py-20 px-4 sm:px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-primary">How it works</h2>
+          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-foreground">How it works</h2>
 
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
@@ -129,7 +129,7 @@ export default function DocsHome() {
       {/* Setup Section */}
       <section id="setup" className="py-20 px-4 sm:px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-primary">Ready to get started?</h2>
+          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-foreground">Ready to get started?</h2>
 
           {/* Local Setup */}
           <div className="mb-20">
@@ -272,7 +272,7 @@ export default function DocsHome() {
       {/* API Section */}
       <section id="api" className="py-20 px-4 sm:px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-primary">REST API</h2>
+          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-foreground">REST API</h2>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div>
@@ -340,7 +340,7 @@ export default function DocsHome() {
       {/* Architecture Section */}
       <section className="py-20 px-4 sm:px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-primary">Architecture</h2>
+          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-12 text-foreground">Architecture</h2>
 
           <div className="grid md:grid-cols-3 gap-6">
             <ArchCard
@@ -386,7 +386,7 @@ export default function DocsHome() {
       {/* Session Management Section */}
       <section className="py-20 px-4 sm:px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-8 text-primary">Session Management</h2>
+          <h2 className="font-[family-name:var(--font-outfit)] text-4xl font-medium mb-8 text-foreground">Session Management</h2>
           <div className="bg-card border border-border/50 rounded-lg p-8">
             <p className="text-muted-foreground mb-6">
               Qatar Airways uses Akamai bot protection. The tracker handles this automatically:
@@ -424,7 +424,7 @@ export default function DocsHome() {
                   Qatar Airways Flight Tracker is fully open source and publicly available on GitHub. All contributions welcome.
                 </p>
                 <div className="space-y-2 text-sm font-mono text-muted-foreground">
-                  <div><span className="text-primary font-bold">Repository:</span> <span className="text-primary">github.com/msamoeed/qatarairways-tracker</span></div>
+                  <div><span className="text-primary font-bold">Repository:</span> <span className="text-foreground">github.com/msamoeed/qatarairways-tracker</span></div>
                   <div><span className="text-accent font-bold">License:</span> MIT</div>
                   <div><span className="text-accent font-bold">Latest:</span> Automated Docker builds on every push</div>
                 </div>
