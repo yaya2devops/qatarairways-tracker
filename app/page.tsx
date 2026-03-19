@@ -20,12 +20,12 @@ export default function DocsHome() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-md">
-              <Image src="/qa-logo.svg" alt="Qatar Airways Tracker" width={24} height={24} className="invert-0" />
+            <div className="w-10 h-8 rounded-lg bg-gradient-to-r from-primary via-primary to-primary/80 flex items-center justify-center shadow-md overflow-hidden">
+              <Image src="/qa-wave-logo.svg" alt="Qatar Airways Tracker" width={28} height={28} className="opacity-90" loading="eager" priority />
             </div>
-            <div>
-              <span className="font-serif text-sm font-light hidden sm:inline block leading-4">Qatar Airways</span>
-              <span className="text-xs text-accent hidden sm:inline block">Flight Tracker</span>
+            <div className="hidden sm:block">
+              <span className="text-sm font-medium block leading-4 text-foreground">Qatar Airways</span>
+              <span className="text-xs text-accent">Flight Tracker</span>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
@@ -61,7 +61,7 @@ export default function DocsHome() {
               <span className="text-xs font-semibold text-accent tracking-wider">Open Source • MIT License</span>
             </div>
             
-            <h1 className="font-serif text-5xl sm:text-7xl font-light tracking-tight text-balance mb-6 leading-tight">
+            <h1 className="font-[family-name:var(--font-jotia)] text-5xl sm:text-7xl font-medium tracking-tight text-balance mb-6 leading-tight text-foreground">
               Essential information to monitor your flights
             </h1>
             <p className="text-lg text-muted-foreground text-balance mb-10 max-w-2xl leading-relaxed">
@@ -478,16 +478,23 @@ export default function DocsHome() {
 }
 
 function FlowStep({ number, title, description, icon }) {
+  const colors = [
+    'from-primary to-primary/70',
+    'from-accent to-accent/70',
+    'from-purple-600 to-purple-500'
+  ]
+  const bgColor = colors[number - 1] || colors[0]
+  
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 group">
       <div className="flex-shrink-0">
-        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
+        <div className={`flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br ${bgColor} text-white shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110`}>
           {icon}
         </div>
       </div>
-      <div>
-        <h3 className="font-bold mb-2">{number}. {title}</h3>
-        <p className="text-muted-foreground text-sm">{description}</p>
+      <div className="flex-1">
+        <h3 className="font-medium font-[family-name:var(--font-jotia)] mb-1 text-foreground">{number}. {title}</h3>
+        <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
   )
@@ -540,25 +547,25 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
   }
 
   return (
-    <div className="relative group bg-background border border-border/50 rounded-lg overflow-hidden">
+    <div className="relative group rounded-lg overflow-hidden border border-border/30 shadow-sm hover:shadow-lg transition-shadow duration-300">
       <div className="px-4 py-3 bg-card border-b border-border/30 flex justify-between items-center">
-        <span className="text-xs text-muted-foreground font-semibold font-mono">bash</span>
+        <span className="text-xs font-medium font-mono text-accent">bash</span>
         <button
           onClick={handleCopy}
-          className="p-1.5 rounded opacity-0 group-hover:opacity-100 transition hover:bg-primary/10"
+          className="p-1.5 rounded opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/15"
           title="Copy to clipboard"
         >
           {localCopied ? (
-            <Check className="w-4 h-4 text-primary" />
+            <Check className="w-4 h-4 text-primary animate-pulse" />
           ) : (
-            <Copy className="w-4 h-4 text-accent" />
+            <Copy className="w-4 h-4 text-accent hover:text-primary transition" />
           )}
         </button>
       </div>
-      <div className="p-4 font-mono text-sm overflow-x-auto bg-gradient-to-br from-background via-background to-primary/5">
-        <div className="text-foreground whitespace-pre-wrap break-words">
+      <div className="p-4 font-mono text-sm overflow-x-auto bg-gradient-to-br from-slate-950 via-slate-900 to-primary/10">
+        <div className="text-foreground whitespace-pre-wrap break-words tracking-tight">
           <span className="text-accent font-bold">$ </span>
-          <span className="text-foreground">{code}</span>
+          <span className="text-white/90 selection:bg-primary/30">{code}</span>
         </div>
       </div>
     </div>

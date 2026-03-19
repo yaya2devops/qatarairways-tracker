@@ -40,43 +40,43 @@
 }
 
 .dark {
-  --background: #0f0f12;
-  --foreground: #fafbfc;
-  --card: #1a1a1f;
-  --card-foreground: #fafbfc;
-  --popover: #16161b;
-  --popover-foreground: #fafbfc;
-  --primary: #5C0632;
-  --primary-foreground: #fafbfc;
-  --secondary: #2a1a22;
-  --secondary-foreground: #fafbfc;
-  --muted: #262630;
-  --muted-foreground: #8a8a94;
-  --accent: #747F8A;
-  --accent-foreground: #0f0f12;
+  --background: #0c0810;
+  --foreground: #f8f7fa;
+  --card: #14111a;
+  --card-foreground: #f8f7fa;
+  --popover: #0f0c14;
+  --popover-foreground: #f8f7fa;
+  --primary: #662046;
+  --primary-foreground: #f8f7fa;
+  --secondary: #25192b;
+  --secondary-foreground: #f8f7fa;
+  --muted: #1f1925;
+  --muted-foreground: #818A8F;
+  --accent: #5E6A71;
+  --accent-foreground: #0c0810;
   --destructive: #dc2626;
-  --destructive-foreground: #fafbfc;
-  --border: #2a2a32;
-  --input: #1a1a1f;
-  --ring: #5C0632;
-  --chart-1: #5C0632;
-  --chart-2: #747F8A;
-  --chart-3: #8b5a8c;
-  --chart-4: #9d6ba3;
-  --chart-5: #c0a0c2;
-  --sidebar: #16161b;
-  --sidebar-foreground: #fafbfc;
-  --sidebar-primary: #5C0632;
-  --sidebar-primary-foreground: #fafbfc;
-  --sidebar-accent: #747F8A;
-  --sidebar-accent-foreground: #0f0f12;
-  --sidebar-border: #2a2a32;
-  --sidebar-ring: #5C0632;
+  --destructive-foreground: #f8f7fa;
+  --border: #262030;
+  --input: #14111a;
+  --ring: #662046;
+  --chart-1: #662046;
+  --chart-2: #818A8F;
+  --chart-3: #5E6A71;
+  --chart-4: #8E8F8B;
+  --chart-5: #9b9fa3;
+  --sidebar: #0f0c14;
+  --sidebar-foreground: #f8f7fa;
+  --sidebar-primary: #662046;
+  --sidebar-primary-foreground: #f8f7fa;
+  --sidebar-accent: #5E6A71;
+  --sidebar-accent-foreground: #0c0810;
+  --sidebar-border: #262030;
+  --sidebar-ring: #662046;
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-serif: var(--font-serif);
+  --font-sans: var(--font-jotia), 'Geist', 'Geist Fallback';
+  --font-serif: var(--font-jotia), 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);

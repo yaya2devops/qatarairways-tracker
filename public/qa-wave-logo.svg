@@ -1,0 +1,31 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="qaBurgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#662046;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a1534;stop-opacity:1" />
+    </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main wave shape inspired by Qatar Airways wave motif -->
+  <path d="M 20 50 Q 30 35 45 40 T 75 45 T 105 50 L 105 60 Q 90 55 75 58 T 45 62 T 20 60 Z" 
+        fill="url(#qaBurgGrad)" filter="url(#softGlow)" opacity="0.95"/>
+  
+  <!-- Secondary flowing wave -->
+  <path d="M 15 65 Q 28 55 42 58 T 72 62 T 110 68 L 110 78 Q 92 72 72 75 T 42 78 T 15 75 Z" 
+        fill="#662046" opacity="0.7"/>
+  
+  <!-- Subtle accent layer -->
+  <path d="M 25 78 Q 35 72 50 74 T 80 78 T 110 82 L 110 88 Q 90 85 80 86 T 50 88 T 25 87 Z" 
+        fill="#818A8F" opacity="0.4"/>
+  
+  <!-- Top accent wave -->
+  <path d="M 18 35 Q 32 28 48 32 T 78 38 T 108 42 L 108 48 Q 88 44 78 45 T 48 46 T 18 44 Z" 
+        fill="#5E6A71" opacity="0.5"/>
+</svg>
