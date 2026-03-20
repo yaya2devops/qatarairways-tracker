@@ -423,11 +423,11 @@ export default function DocsHome() {
                 <p className="text-muted-foreground mb-4">
                   Qatar Airways Flight Tracker is fully open source and publicly available on GitHub. All contributions welcome.
                 </p>
-                <div className="space-y-2 text-sm font-mono text-muted-foreground">
-                  <div><span className="text-accent font-bold">Repository:</span> github.com/msamoeed/qatarairways-tracker</div>
-                  <div><span className="text-accent font-bold">License:</span> MIT</div>
-                  <div><span className="text-accent font-bold">Latest:</span> Automated Docker builds on every push</div>
-                </div>
+          <div className="space-y-2 text-sm font-mono text-foreground">
+                <div><span className="text-primary font-bold">Repository:</span> <span className="text-foreground">github.com/msamoeed/qatarairways-tracker</span></div>
+                <div><span className="text-primary font-bold">License:</span> <span className="text-foreground">MIT</span></div>
+                <div><span className="text-primary font-bold">Latest:</span> <span className="text-foreground">Automated Docker builds on every push</span></div>
+              </div>
               </div>
               <a href="https://github.com/msamoeed/qatarairways-tracker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:shadow-lg hover:shadow-primary/20 transition whitespace-nowrap">
                 <Github className="w-5 h-5" /> Visit GitHub
@@ -468,7 +468,7 @@ export default function DocsHome() {
           </div>
           <div className="border-t border-border/50 pt-8">
             <p className="text-xs text-muted-foreground text-center">
-              Qatar Airways Flight Tracker • Open Source • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-accent hover:text-primary transition">github.com/msamoeed</a>
+              Qatar Airways Flight Tracker • Open Source • <a href="https://github.com/msamoeed/qatarairways-tracker" className="text-primary hover:text-primary/80 transition font-medium">github.com/msamoeed</a>
             </p>
           </div>
         </div>
@@ -548,8 +548,8 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
 
   return (
     <div className="relative group rounded-lg overflow-hidden border border-border/30 shadow-sm hover:shadow-lg transition-shadow duration-300">
-      <div className="px-4 py-3 bg-card border-b border-border/30 flex justify-between items-center">
-        <span className="text-xs font-medium font-mono text-accent">bash</span>
+  <div className="px-4 py-3 bg-card border-b border-border/30 flex justify-between items-center">
+  <span className="text-xs font-medium font-mono text-primary">bash</span>
         <button
           onClick={handleCopy}
           className="p-1.5 rounded opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/15"
