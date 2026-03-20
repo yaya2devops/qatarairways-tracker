@@ -25,7 +25,7 @@ export default function DocsHome() {
             </div>
             <div className="hidden sm:block">
               <span className="text-sm font-medium block leading-4 text-foreground">Qatar Airways</span>
-              <span className="text-xs text-accent">Flight Tracker</span>
+              <span className="text-xs text-primary font-medium">Flight Tracker</span>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
@@ -493,7 +493,7 @@ function FlowStep({ number, title, description, icon }) {
         </div>
       </div>
       <div className="flex-1">
-        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1"><span className="text-primary font-bold">{number}.</span> <span className="text-accent">{title}</span></h3>
+        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-primary"><span className="font-bold">{number}.</span> {title}</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
@@ -517,10 +517,10 @@ function AlertEvent({ emoji, event, subject }) {
 function SetupStep({ step, title, description, commands }) {
   return (
     <div className="mb-8">
-      <div className="flex items-baseline gap-3 mb-4">
-        <span className="text-accent font-bold text-lg">Step {step}</span>
-        <h4 className="text-lg font-bold">{title}</h4>
-      </div>
+  <div className="flex items-baseline gap-3 mb-4">
+  <span className="text-primary font-bold text-lg">Step {step}</span>
+  <h4 className="text-lg font-bold text-primary">{title}</h4>
+  </div>
       {description && <p className="text-muted-foreground text-sm mb-4">{description}</p>}
       <div className="space-y-2">
         {commands.map((cmd, i) => (
