@@ -20,8 +20,8 @@ export default function DocsHome() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-8 rounded-lg bg-gradient-to-r from-primary via-primary to-primary/80 flex items-center justify-center shadow-md overflow-hidden">
-              <Image src="/qa-wave-logo.svg" alt="Qatar Airways Tracker" width={28} height={28} className="opacity-90" loading="eager" priority />
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
+              <Image src="/qatrack-logo.png" alt="Qatar Airways Tracker" width={40} height={40} className="w-full h-full object-cover" loading="eager" priority />
             </div>
             <div className="hidden sm:block">
               <span className="text-sm font-medium block leading-4 text-foreground">Qatar Airways</span>
@@ -493,7 +493,7 @@ function FlowStep({ number, title, description, icon }) {
         </div>
       </div>
       <div className="flex-1">
-        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-accent">{number}. {title}</h3>
+        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1"><span className="text-primary font-bold">{number}.</span> <span className="text-accent">{title}</span></h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
