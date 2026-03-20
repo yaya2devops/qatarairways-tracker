@@ -564,16 +564,8 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
       </div>
       <div className="p-4 font-mono text-sm overflow-x-auto bg-gradient-to-br from-slate-950 via-slate-900 to-primary/10">
         <div className="text-foreground whitespace-pre-wrap break-words tracking-tight">
-          <span className="text-accent font-bold">$ </span>
-          <code className="text-primary/90 selection:bg-primary/30">
-            {code.split('=').map((part, index) => 
-              index % 2 === 0 ? (
-                <span key={index} className="text-primary font-semibold">{part}=</span>
-              ) : (
-                <span key={index} className="text-primary/80">{part}</span>
-              )
-            )}
-          </code>
+          <span className="text-primary font-bold">$ </span>
+          <span className="text-primary/90 selection:bg-primary/30">{code}</span>
         </div>
       </div>
     </div>
