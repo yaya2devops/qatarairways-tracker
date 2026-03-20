@@ -57,8 +57,8 @@ export default function DocsHome() {
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div className="max-w-3xl">
-            <div className="mb-6 inline-block px-4 py-2 rounded-full border border-accent/40 bg-accent/10">
-              <span className="text-xs font-semibold text-accent tracking-wider">Open Source • MIT License</span>
+            <div className="mb-6 inline-block px-4 py-2 rounded-full border border-primary/40 bg-primary/10">
+              <span className="text-xs font-semibold text-primary tracking-wider">Open Source • MIT License</span>
             </div>
             
             <h1 className="font-[family-name:var(--font-outfit)] text-5xl sm:text-7xl font-medium tracking-tight text-balance mb-6 leading-tight text-foreground">
@@ -479,9 +479,9 @@ export default function DocsHome() {
 
 function FlowStep({ number, title, description, icon }) {
   const colors = [
-    'from-primary to-primary/70',
-    'from-accent to-accent/70',
-    'from-purple-600 to-purple-500'
+  'from-primary to-primary/70',
+  'from-blue-600 to-blue-500',
+  'from-purple-600 to-purple-500'
   ]
   const bgColor = colors[number - 1] || colors[0]
   
@@ -493,7 +493,7 @@ function FlowStep({ number, title, description, icon }) {
         </div>
       </div>
       <div className="flex-1">
-        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-foreground">{number}. {title}</h3>
+        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-accent">{number}. {title}</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
