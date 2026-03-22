@@ -1,5 +1,11 @@
 # Qatar Airways Flight Tracker
 
+## UIDOH 
+
+I am working on the UI for this project to make it user-friendly for newcomers. For now, I am handling [this contribution](https://github.com/yaya2devops/qatarairways-tracker/blob/merge-UIDOH/README.md).
+
+This project is the creation and co-authorship of Abul Moeed as per the following;
+
 Automatically monitors Qatar Airways flight availability and sends email alerts the moment anything changes — new availability, sold out, price movements, or seat count changes.
 
 ## How it works
