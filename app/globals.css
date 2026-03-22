@@ -4,25 +4,33 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Qatar Airways brand (digital) */
+  --qr-burgundy: #662046;
+  --qr-burgundy-safe: #660033;
+  --qr-burgundy-deep: #4a1834;
+  --qr-grey-1: #818a8f;
+  --qr-grey-2: #5e6a71;
+  --qr-grey-3: #8e8f8b;
+
+  --background: oklch(0.99 0.002 325);
+  --foreground: oklch(0.18 0.02 325);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.18 0.02 325);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.18 0.02 325);
+  --primary: #662046;
+  --primary-foreground: #faf8f9;
+  --secondary: oklch(0.96 0.01 325);
+  --secondary-foreground: #662046;
+  --muted: oklch(0.96 0.008 325);
+  --muted-foreground: #5e6a71;
+  --accent: oklch(0.94 0.02 325);
+  --accent-foreground: #662046;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0.01 325);
+  --input: oklch(0.92 0.01 325);
+  --ring: #662046;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -40,24 +48,24 @@
 }
 
 .dark {
-  --background: #0c0810;
-  --foreground: #f8f7fa;
-  --card: #14111a;
-  --card-foreground: #f8f7fa;
-  --popover: #0f0c14;
-  --popover-foreground: #f8f7fa;
+  --background: #0a0610;
+  --foreground: #f3f1f4;
+  --card: #120e18;
+  --card-foreground: #f3f1f4;
+  --popover: #0e0a12;
+  --popover-foreground: #f3f1f4;
   --primary: #662046;
-  --primary-foreground: #f8f7fa;
-  --secondary: #25192b;
-  --secondary-foreground: #f8f7fa;
-  --muted: #1f1925;
-  --muted-foreground: #818A8F;
-  --accent: #5E6A71;
-  --accent-foreground: #0c0810;
+  --primary-foreground: #faf8f9;
+  --secondary: #1c1522;
+  --secondary-foreground: #e8e4ea;
+  --muted: #1a1420;
+  --muted-foreground: #818a8f;
+  --accent: #5e6a71;
+  --accent-foreground: #f3f1f4;
   --destructive: #dc2626;
   --destructive-foreground: #f8f7fa;
-  --border: #262030;
-  --input: #14111a;
+  --border: #2a2433;
+  --input: #16101c;
   --ring: #662046;
   --chart-1: #662046;
   --chart-2: #818A8F;
@@ -122,5 +130,36 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes hero-shimmer {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes hero-line {
+  0% {
+    transform: scaleX(0.35);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-hero-shimmer {
+    animation: hero-shimmer 5s ease-in-out infinite;
+  }
+  .animate-hero-line {
+    animation: hero-line 1.2s ease-out forwards;
+    transform-origin: left center;
   }
 }
