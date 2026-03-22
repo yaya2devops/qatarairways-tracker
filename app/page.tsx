@@ -20,12 +20,20 @@ export default function DocsHome() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
-              <Image src="/qatrack-logo.png" alt="Qatar Airways Tracker" width={40} height={40} className="w-full h-full object-cover" loading="eager" priority />
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md">
+              <Image
+                src="/qatrack-logo.png"
+                alt="Qatar Airways Tracker"
+                width={28}
+                height={28}
+                className="h-7 w-7 max-h-full max-w-full object-contain"
+                loading="eager"
+                priority
+              />
             </div>
             <div className="hidden sm:block">
               <span className="text-sm font-medium block leading-4 text-foreground">Qatar Airways</span>
-              <span className="text-xs text-primary font-medium">Flight Tracker</span>
+              <span className="text-xs font-medium text-[#662046]">Flight Tracker</span>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
@@ -155,15 +163,15 @@ export default function DocsHome() {
             />
 
             <div className="mb-8 p-6 bg-card border border-border/50 rounded-lg">
-              <p className="text-sm font-mono text-muted-foreground mb-4">Required environment variables:</p>
-              <div className="space-y-2 font-mono text-xs text-muted-foreground">
-                <div><span className="text-accent">EMAIL_HOST=</span>smtp.yourserver.com</div>
-                <div><span className="text-accent">EMAIL_PORT=</span>587</div>
-                <div><span className="text-accent">EMAIL_USER=</span>you@yourdomain.com</div>
-                <div><span className="text-accent">EMAIL_PASS=</span>your_password</div>
-                <div><span className="text-accent">EMAIL_FROM=</span>noreply@yourdomain.com</div>
-                <div><span className="text-accent">EMAIL_TO=</span>recipient1@example.com,recipient2@example.com</div>
-                <div><span className="text-accent">PORT=</span>3000</div>
+              <p className="text-sm font-mono text-foreground mb-4">Required environment variables:</p>
+              <div className="space-y-2 font-mono text-xs text-foreground">
+                <div>EMAIL_HOST=smtp.yourserver.com</div>
+                <div>EMAIL_PORT=587</div>
+                <div>EMAIL_USER=you@yourdomain.com</div>
+                <div>EMAIL_PASS=your_password</div>
+                <div>EMAIL_FROM=noreply@yourdomain.com</div>
+                <div>EMAIL_TO=recipient1@example.com,recipient2@example.com</div>
+                <div>PORT=3000</div>
               </div>
             </div>
 
@@ -493,7 +501,9 @@ function FlowStep({ number, title, description, icon }) {
         </div>
       </div>
       <div className="flex-1">
-        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-primary"><span className="font-bold">{number}.</span> {title}</h3>
+        <h3 className="font-medium font-[family-name:var(--font-outfit)] mb-1 text-[#662046]">
+          <span className="font-bold">{number}.</span> {title}
+        </h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
@@ -518,8 +528,8 @@ function SetupStep({ step, title, description, commands }) {
   return (
     <div className="mb-8">
   <div className="flex items-baseline gap-3 mb-4">
-  <span className="text-primary font-bold text-lg">Step {step}</span>
-  <h4 className="text-lg font-bold text-primary">{title}</h4>
+    <span className="text-lg font-bold text-[#662046]">Step {step}</span>
+    <h4 className="text-lg font-bold text-[#662046]">{title}</h4>
   </div>
       {description && <p className="text-muted-foreground text-sm mb-4">{description}</p>}
       <div className="space-y-2">
