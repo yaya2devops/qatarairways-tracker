@@ -19,9 +19,9 @@ export default function DocsHome() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/95 h-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md flex items-center justify-center shadow-md overflow-hidden">
-              <Image src="/qatrack-logo.png" alt="Qatar Airways Tracker" width={32} height={32} className="w-full h-full object-cover" loading="eager" priority />
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-md overflow-hidden">
+              <Image src="/qatrack-logo.png" alt="Qatar Airways Tracker" width={40} height={40} className="w-full h-full object-cover" loading="eager" priority />
             </div>
             <div className="hidden sm:block">
               <span className="text-sm font-medium block leading-4 text-foreground">Qatar Airways</span>
@@ -564,8 +564,8 @@ function CodeBlock({ code, id, onCopy, isCopied }) {
       </div>
       <div className="p-4 font-mono text-sm overflow-x-auto bg-gradient-to-br from-slate-950 via-slate-900 to-primary/10">
         <div className="text-foreground whitespace-pre-wrap break-words tracking-tight">
-          <span className="text-primary font-bold">$ </span>
-          <span className="text-primary/90 selection:bg-primary/30">{code}</span>
+          <span className="text-accent font-bold">$ </span>
+          <span className="text-white/90 selection:bg-primary/30">{code}</span>
         </div>
       </div>
     </div>
